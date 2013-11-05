@@ -33,7 +33,7 @@ class FeatureRunner < Thor
         thread_pool << t
 
         t = Thread.new do |n|
-          invoke :ie_runner
+          invoke :headless_runner
         end
         thread_pool << t
 
@@ -43,7 +43,7 @@ class FeatureRunner < Thor
       feature_run = lambda { 
         invoke "feature_runner:firefox_runner", options
         invoke "feature_runner:chrome_runner", options
-        invoke "feature_runner:ie_runner", options
+        invoke "feature_runner:headless_runner", options
       }
     end
 
@@ -77,13 +77,6 @@ class FeatureRunner < Thor
   feature_runner_options.call # Set up common feature runner options defined above
   def headless_runner
     command = build_cucumber_command("headless", options)
-    run_command(command, options[:verbose])
-  end
-
-  desc "ie_runner", "Run features on IE"
-  feature_runner_options.call # Set up common feature runner options defined above
-  def ie_runner
-    command = build_cucumber_command("ie", options)
     run_command(command, options[:verbose])
   end
 

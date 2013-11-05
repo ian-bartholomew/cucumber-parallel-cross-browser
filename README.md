@@ -1,36 +1,47 @@
-# Cucumber Cross Browser Testing
+# Cucumber Parallel Cross Browser Basic Projec
 
 Description
 ===========
 
-This is a Cucumber project that will run acceptance tests cross browser
+This is a basic project that parallelizes tests, spinning off a new thread for each browser, via Thor.  This isn't that fancy, so it's not using tags, which would be another way to go with this.
+
+Right now, the browser that are included out of the box are: FF, Chrome/webkit, and headless.
+
+There is also another branch in this project, 'IE', that includes IE in the mix.  That requires some love at the momement, in the documentation department, and getting it easier to use, as you have to spin up a VM, install java, install the adapter, etc.  Basically, its IE, so of course its going to be a PITA.
+
 
 Requirements
 ============
 
-Ruby 1.9.3+
+* Ruby 1.9.3+ ([RVM](https://rvm.io/) is the best at managing this)
+* [Ruby Gems](http://rubygems.org/)
+* Bundler: sudo gem install bundler rake
 
-Bundler
 
-Poltergist
+Project Layout
+====
 
-VirtualBox
+* features/*.feature : cucumber features
+* features/step_definitions/web_steps.rb : generic steps that apply to all features
+* features/step_definintions/[feature]_steps.rb : steps specific to an individual feature file
+* support/env.rb : configures the driver and the hostname to use
 
 
 Usage
-=====
-ievms
+===
 
-Install Java on Windows
+In terminal, to install:
 
-Install IE driver in /Windows/sys32
+    $ cd cucumber-basic-folder
+    $ bundle install
+    
+Then, to run the tests, while still in the folder:
 
-Port forwarding on host to 4444
+	$ thor feature_runner:all_drivers_runner
 
-http://chromedriver.storage.googleapis.com/index.html <-- into PATH
+To see all of the tests:
+    
+    $ thor list	
+	
 
-
-Limitations
-===========
-
-Licence expiring on Win - snapshots
+The tests will run through a sample feature, test each step, and as part of the last step, save a screen shot in the `screenshot/` directory for each data point in example table (see the search.feature) and for each browser.  Each browser is also resized to a standard size, to make comparing them easier.
