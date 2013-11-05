@@ -1,0 +1,5 @@
+default: --format pretty
+firefox: --format pretty BROWSER=firefox
+chrome: --format pretty BROWSER=chrome
+# ie: --format pretty BROWSER=ie
+headless: --format pretty BROWSER=headless
