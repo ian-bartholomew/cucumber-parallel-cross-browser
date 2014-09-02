@@ -1,4 +1,4 @@
-# Cucumber Parallel Cross Browser Basic Projec
+# Cucumber Parallel Cross Browser Basic Project
 
 Description
 ===========
